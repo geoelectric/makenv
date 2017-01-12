@@ -30,7 +30,7 @@ Usage, from the header comment:
 # Please do not redistribute the new copy of the app.
 ```
 
-`name`: name of the renamed bundle. Original was `nvALT`. Default is `nvGEO`
+`name`: name of the renamed bundle. Original was `nvALT`. Default is `nvGEO`.
 
 `identifier`: this is a namespace used for preferences and url schemes (used to launch one app from another). Two bundles with the same identifier share preferences (poorly) and URL schemes will collide. If you create more than one nvALT copy make sure to change this to something unique per-copy. Original was `net.elasticthreads.nv`. Default is `com.snarksoft.nvgeo`.
 
@@ -38,7 +38,7 @@ Usage, from the header comment:
 
 `url scheme 2`: this is the second alias for the url scheme. Original was `nvalt`. Default is `nvgeo`.
 
-TL;DR: if you don't supply anything you'll get a bundle called nvGEO.app with its own preferences namespace.
+**TL;DR: if you don't supply anything you'll get a bundle called nvGEO.app with its own preferences namespace.**
 
 ## Next Steps
 
