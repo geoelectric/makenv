@@ -32,13 +32,17 @@ Usage, from the header comment:
 
 `name`: name of the renamed bundle. Original was `nvALT`. Default is `nvGEO`.
 
-`identifier`: this is a namespace used for preferences and url schemes (used to launch one app from another). Two bundles with the same identifier share preferences (poorly) and URL schemes will collide. If you create more than one nvALT copy make sure to change this to something unique per-copy. Original was `net.elasticthreads.nv`. Default is `com.snarksoft.nvgeo`.
+`identifier`: this is a namespace used for preferences. Original was `net.elasticthreads.nv`. Default is `com.snarksoft.nvgeo`.
 
-`url scheme 1`: this is the first alias for the url scheme. Original was `nv`. Default is `nvg`.
+Two bundles with the same identifier share preferences...poorly. If you create more than one nvALT copy make sure to change this to something unique per-copy. 
 
-`url scheme 2`: this is the second alias for the url scheme. Original was `nvalt`. Default is `nvgeo`.
+`url scheme 1`: this is the first url scheme protocol specifier. Original was `nv`. Default is `nvg`.
 
-**TL;DR: if you don't supply anything you'll get a bundle called nvGEO.app with its own preferences namespace.**
+`url scheme 2`: this is the second url scheme protocol specifier. Original was `nvalt`. Default is `nvgeo`.
+
+As with `identifier`, these should be unique per-instance or else app-to-app launching will misbehave. If you create more than on nvALT copy, make sure to change both of these to something unique per-copy.
+
+**TL;DR: if you don't supply anything you'll get a bundle called `nvGEO.app` with its own `com.snarksoft.nvgeo` preferences namespace and `nvg`/`nvgeo` url schemes.**
 
 ## Next Steps
 
