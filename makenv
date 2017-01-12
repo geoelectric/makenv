@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Copies nvALT over to a customized bundle
+#
+# makenv [name] [identifier] [url scheme 1] [url scheme 2]
+#
+# Note that Brett's copyright notice inside the plist is
+# changed in the process. This, as well as any identifier
+# changes, are purely mechanical and are not meant to in
+# any way indicate different ownership of the app.
+#
+# Please do not redistribute the new copy of the app.
+ 
+newname=${1:-nvGEO}
+identifier=${2:-com.snarksoft.nvgeo}
+url1=${3:-nvg}
+url2=${4:-nvgeo}
+
+origname=nvALT
+orig=/Applications/nvALT.app
+new=/Applications/${newname}.app
+info=${new}/Contents/Info.plist
+strings=${new}/Contents/Resources/en.lproj/InfoPlist.strings
+
+rm -rf "${new}"
+cp -R "${orig}" "${new}"
+
+# Change a bunch of identifiers for bundle, URL, Finder extension, etc.
+sed -i '' "s/net\.elasticthreads\.nv/${identifier}/" "${info}"
+sed -i '' "s/nvALT/${newname}/" "${info}"
+sed -i '' "s/<string>nv</<string>${url1}</" "${info}"
+sed -i '' "s/<string>nvalt</<string>${url2}</" "${info}"
+
+# We don't want this one changed
+sed -i '' -e '/<key>CFBundleExecutable<\/key>/ {' -e "n; s/${newname}/${origname}/" -e '}' "${info}"
+
+# Menu Bar -- File is in UTF-16 so has to be transcoded back and forth
+iconv -f UTF-16 "${strings}" > "${strings}.new"
+sed "s/nvALT/${newname}/" ${strings}.new | iconv -t UTF-16 > "${strings}"
+rm ${strings}.new
+
+codesign -f -s - ${new}
