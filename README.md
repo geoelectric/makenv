@@ -11,7 +11,7 @@ However, doing this breaks auto-updating on the copied bundle. The main app will
 
 This script automates copying nvALT to a renamed bundle and changes the various things in Info.plist that must be changed to keep the two bundles from colliding with each other. 
 
-You can re-run it from Terminal command line (or Spotlight, after `chmod +x`'ing it) whenever nvALT is updated. Preferences will be preserved.
+You can re-run it from Terminal command line (or Spotlight, after `chmod +x`'ing it) whenever nvALT is updated. The copy's preferences will be preserved when the bundle is recreated in this fashion.
 
 ## Usage
 
