@@ -40,7 +40,7 @@ Two bundles with the same identifier share preferences...poorly. If you create m
 
 `url scheme 2`: this is the second url scheme protocol specifier. Original was `nvalt`. Default is `nvgeo`.
 
-As with `identifier`, these should be unique per-instance or else app-to-app launching will misbehave. If you create more than on nvALT copy, make sure to change both of these to something unique per-copy.
+As with `identifier`, these should be unique per-instance or else app-to-app launching will misbehave. If you create more than one nvALT copy, make sure to change both of these to something unique per-copy.
 
 **TL;DR: if you don't supply anything you'll get a bundle called `nvGEO.app` with its own `com.snarksoft.nvgeo` preferences namespace and `nvg`/`nvgeo` url schemes.**
 
