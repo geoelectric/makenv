@@ -16,7 +16,6 @@ identifier=${2:-com.snarksoft.nvgeo}
 url1=${3:-nvg}
 url2=${4:-nvgeo}
 
-origname=nvALT
 orig=/Applications/nvALT.app
 new=/Applications/${newname}.app
 info=${new}/Contents/Info.plist
@@ -32,11 +31,11 @@ sed -i '' "s/<string>nv</<string>${url1}</" "${info}"
 sed -i '' "s/<string>nvalt</<string>${url2}</" "${info}"
 
 # We don't want this one changed
-sed -i '' -e '/<key>CFBundleExecutable<\/key>/ {' -e "n; s/${newname}/${origname}/" -e '}' "${info}"
+sed -i '' -e '/<key>CFBundleExecutable<\/key>/ {' -e "n; s/${newname}/nvALT/" -e '}' "${info}"
 
 # Menu Bar -- File is in UTF-16 so has to be transcoded back and forth
 iconv -f UTF-16 "${strings}" > "${strings}.new"
-sed "s/nvALT/${newname}/" ${strings}.new | iconv -t UTF-16 > "${strings}"
-rm ${strings}.new
+sed "s/nvALT/${newname}/" "${strings}.new" | iconv -t UTF-16 > "${strings}"
+rm "${strings}.new"
 
-codesign -f -s - ${new}
+codesign -f -s - "${new}"
